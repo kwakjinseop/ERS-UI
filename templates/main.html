@@ -1,0 +1,80 @@
+<!-- 참고
+     https://velog.io/@teddybearjung/Django-%EB%A1%9C-%EA%B2%8C%EC%8B%9C%ED%8C%90-%EB%A7%8C%EB%93%A4%EA%B8%B021.-%EA%B2%8C%EC%8B%9C%ED%8C%90-%EB%B3%B4%EC%99%84%ED%95%98%EA%B8%B0
+     로그인 상태 네비게이션 바 설정 -->
+
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/style-1.css">
+    <title>DoCatch</title>
+
+</head>
+<body>
+<!--웹이름 + 네이게이션바-->
+
+  <nav class="navbar">
+    <div class="navbar_logo">
+      <a href="{% url 'index' %}">Docatch</a>
+    </div>
+
+    {% if request.session.user %}
+      <div class="welcome">
+        <h4>안녕하세요! {{ name }} 님</h4>
+
+      </div>
+      <style>
+          h4{
+          color: orange;
+      </style>
+
+      <div>
+      <ul class="navbar_user">
+        <li><a href=""> 사용방법 </a> </li>
+        <li><a href="{% url 'use' %}"> 시작하기 </a> </li>
+        <li><a href="{% url 'logout' %}">로그아웃</a> </li>
+
+      </ul>
+      </div>
+
+    {% else %}
+
+    <ul class="navbar_menu">
+      <li><a href=""> 사용방법 </a> </li>
+      <li><a href="{% url 'login' %}"> 로그인 </a> </li>
+
+    </ul>
+    {% endif %}
+
+  </nav>
+
+
+
+
+</body>
+
+<h3>DoCatch는  Document + Catch로 OCR기반 문서정보 추출 프레임워크입니다.</h3>
+
+
+<body>
+  <nav class="main">
+  <ul>
+    <div id="메인설명">
+      <li>두캐치 설명들...</li>
+    </div>
+    <!--로그인-->
+
+  </ul>
+    </nav>
+</body>
+
+
+<!-- <a href="{% url 'register' %}" >회원가입</a> 이게 왜 없지? -->
+
+
+
+</html>
+
+
+
+
