@@ -4,6 +4,13 @@ from django.http import HttpResponse
 
 from account.models import Account
 
+import os
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
+import easyocr # 이렇게 해야지 오류 없이 잘 돌아감 (https://jaeniworld.tistory.com/8)
+import cv2
+print('Success import easyocr and cv2!')
+reader = easyocr.Reader(['ko', 'en'], gpu=True) # this needs to run only once to load the model into memory
+
 # 참고
 # https://gosmcom.tistory.com/143 : 로그인 처리 이름 불러오기
 # https://free-eunb.tistory.com/43 : 이미지 for 문처리
@@ -47,6 +54,30 @@ def use(request):
 
             #imgList = Image.objects.filter(email=account.useremail)
             #return HttpResponse(Image.image)
+
+            img = cv2.imread('C:\\Users\\hufs_ice\\PycharmProjects\\DoCatch\\ERS-UI\media\\images\\ko1naver.com_serial14-2.jpg')
+            result = reader.readtext('C:\\Users\\hufs_ice\\PycharmProjects\\DoCatch\\ERS-UI\media\\images\\ko1naver.com_serial14-2.jpg')
+            # 왼쪽위, 왼쪽아래, 오른쪽아래, 오른쪽위
+            for i in range(len(result)):
+                if i == 0:
+                    print('[', result[i], ',')
+                elif i == len(result) - 1:
+                    print(result[i], ']')
+                else:
+                    print(result[i], ',')
+            i = 0
+            for (bbox, text, prob) in result:
+                i += 1
+                (tl, tr, br, bl) = bbox
+                tl = (int(tl[0]), int(tl[1]))
+                tr = (int(tr[0]), int(tr[1]))
+                br = (int(br[0]), int(br[1]))
+                bl = (int(bl[0]), int(bl[1]))
+
+                cv2.rectangle(img, tl, br, (0, 255, 0), 2)
+            cv2.imshow("Image", img)
+            cv2.waitKey(0)
+
     imgList = Image.objects.filter(email=account.useremail)
     return render(request, 'use.html', {'imgList':imgList})
 
