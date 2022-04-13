@@ -67,25 +67,34 @@ https://sinna94.tistory.com/entry/JavaScript-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%97%
             <th scope="col">파일명</th>
         </tr>
         </thead>
+<!--        <tbody>-->
+<!--        <tr>-->
+<!--            <th scope="row">1</th>-->
+<!--            <td></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <th scope="row">2</th>-->
+<!--            <td></td>-->
+<!--        </tr>-->
+<!--        <tr>-->
+<!--            <th scope="row">3</th>-->
+<!--        </tr>-->
+<!--        </tbody>-->
         <tbody>
-        <tr>
-            <th scope="row">1</th>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">2</th>
-            <td></td>
-        </tr>
-        <tr>
-            <th scope="row">3</th>
-        </tr>
-        </tbody>
-
         {% for file in imgList %}
-            <h5> {{ file.image }} </h5>
-            <img src="{{ file.image.url }}">
-            <br>
+        <tr>
+<!--            <th> {{ file.image }} </th>-->
+            <td>
+            <img src="{{ file.image.url }}"/>
+
+            </td>
+            </tr>
+        <tr>
+            <td>{{ file.image }}</td>
+        </tr>
         {% endfor %}
+
+        </tbody>
     </table>
 
 
