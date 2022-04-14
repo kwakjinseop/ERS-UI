@@ -184,3 +184,10 @@ height: 600px;
 background-color:#e9e9e9;
 float:right;
 }
+ */
+img {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 200px;
+}
