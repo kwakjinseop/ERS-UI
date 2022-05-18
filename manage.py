@@ -2,11 +2,12 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
 
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config.settings')
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ICE_Docatch.settings')
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
