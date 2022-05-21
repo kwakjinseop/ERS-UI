@@ -2,12 +2,13 @@ from django.shortcuts import render
 from .models import Image, Template, Result
 from django.http import HttpResponse
 from django.db import models
+from .import models
 
 from account.models import Account
 
 import os
-
 os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
+
 import easyocr  # 이렇게 해야지 오류 없이 잘 돌아감 (https://jaeniworld.tistory.com/8)
 import cv2
 import numpy as np
@@ -133,48 +134,6 @@ def use(request):
 
 
 def useTemplate(request):
-    # userstate = request.session.get('user')
-    # account = Account.objects.get(pk=userstate)
-    # name = {}
-    #
-    # if request.method == "POST":
-    #     img = request.FILES.get('image', None)
-    #
-    #     if not img:
-    #         return render(request, 'useTemplate.html', name)
-    #
-    #     else:
-    #         image = Image(
-    #             email=account.useremail,
-    #             image = img,
-    #         )
-    #
-    #         image.save()
-    #
-    #         img = cv2.imread('C:\\Users\\hufs_ice\\PycharmProjects\\DoCatch\\ERS-UI\media\\images\\ko1naver.com_serial14-2.jpg')
-    #         result = reader.readtext('C:\\Users\\hufs_ice\\PycharmProjects\\DoCatch\\ERS-UI\media\\images\\ko1naver.com_serial14-2.jpg')
-    #         # 왼쪽위, 왼쪽아래, 오른쪽아래, 오른쪽위
-    #         for i in range(len(result)):
-    #             if i == 0:
-    #                 print('[', result[i], ',')
-    #             elif i == len(result) - 1:
-    #                 print(result[i], ']')
-    #             else:
-    #                 print(result[i], ',')
-    #         i = 0
-    #         for (bbox, text, prob) in result:
-    #             i += 1
-    #             (tl, tr, br, bl) = bbox
-    #             tl = (int(tl[0]), int(tl[1]))
-    #             tr = (int(tr[0]), int(tr[1]))
-    #             br = (int(br[0]), int(br[1]))
-    #             bl = (int(bl[0]), int(bl[1]))
-    #
-    #             cv2.rectangle(img, tl, br, (0, 255, 0), 2)
-    #         cv2.imshow("Image", img)
-    #
-    # imgList = Image.objects.filter(email=account.useremail)
-    # return render(request, 'useTemplate.html', {'imgList':imgList})
 
     # 이렇게 하면 페이지 연결은 됨
     userstate = request.session.get('user')
@@ -191,8 +150,22 @@ def useTemplate(request):
         return render(request, 'useTemplate.html')
 
 
-def maketemplate(request):
-        return render(request, 'maketemplate.html')
+# def maketemplate(request):
+#     if request.method == "POST":
+#         # Fetching the form data
+#
+#         uploadedFile = request.FILES["uploadedFile"]
+#
+#         # Saving the information in the database
+#         document = models.Document(
+#
+#             uploadedFile=uploadedFile
+#         )
+#         document.save()
+#         ocr(request)
+#
+#     documents = models.Document.objects.all()
+#     return render(request, "../templates/maketemplate.html", context={"files": documents})
 
 
 def click(request):

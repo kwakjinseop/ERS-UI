@@ -5,7 +5,7 @@ urlpatterns = [
 
     path('', views.index, name='index'),
     path('use/', views.use, name='use'),
-    path('maketemplate/', views.maketemplate, name='maketemplate'),
+    path('maketemplate/', views.uploadFile, name='maketemplate'),
     path('<int:pk>/usetemplate/', views.usetemplate, name='usetemplate'),
     path('templateMenu/', views.templateMenu, name='templateMenu'),
     path('makeGroup/', views.makeGroup, name='makeGroup'),
