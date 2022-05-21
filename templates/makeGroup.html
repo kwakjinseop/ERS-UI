@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <link rel="stylesheet" href="/static/css/style-1.css">-->
+    <title>makeGroup</title>
+</head>
+<body>
+<!--<form action="" method="post">-->
+<!--  	<input type="checkbox" name="resultSelected" value="{{result.id}}">-->
+
+<!--  <button type="submit">저장</button>-->
+<!--</form>-->
+<style>
+  table, th, td {
+    border: 1px solid #bcbcbc;
+  }
+  table {
+    width: 700px;
+  }
+  .td_id {
+    width: 100px;
+  }
+  .td_result {
+    width: 300px;
+  }
+
+</style>
+<table>
+    <tr>
+        <td class="td_id">인덱스번호</td>
+        <td class="td_name">열이름</td>
+        <td class="td_result">추출값</td>
+        <td class="td_checkbox">선택</td>
+    </tr>
+    <tr>
+{% for result in results %}
+
+        <td class="td_id">{{result.id}}</td>
+        <td class="td_name"><input type="text" name="tdname"></td>
+        <td class="td_result">{{result.result}}</td>
+        <td class="td_checkbox"><input id="selected_result" type="checkbox" name="selected_result" value="" ></td>
+    </tr>
+{% endfor %}
+
+</table>
+
+<button type="submit"> <a href="{% url 'Group'  %}"> 그룹화 </a> </button>
+</body>
+</html>
