@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     ##acount 새로 등록한 app 등록 근데 pybo는 왜 없지???
     #아마도 모델이 있을 때만 작성하는듯
     'account.apps.AccountConfig',
-    'pybo.apps.PyboConfig'
+    'pybo.apps.PyboConfig',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -51,9 +52,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
+
+INTERNAL_IPS = ('127.0.0.1')
 
 TEMPLATES = [
     {
@@ -128,10 +132,7 @@ MEDIA_URL = ' /media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATICFILES_DIRS = [
-    BASE_DIR / 'static',
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
